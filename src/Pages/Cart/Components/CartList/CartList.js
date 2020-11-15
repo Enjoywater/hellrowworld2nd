@@ -20,12 +20,12 @@ class CartList extends React.Component {
       <li className="CartList">
         <div className="thumbnail">
           <input type="checkbox" />
-          <a href="">
+          <a href="m">
             <img alt="thumbImg" src={thumbnail} />
           </a>
         </div>
         <div className="listInfo">
-          <a href="">{name}</a>
+          <a href="m">{name}</a>
           <div className="deleteBox" onClick={() => handleDelete(cartId)}>
             <span className="delete1"></span>
             <span className="delete2"></span>

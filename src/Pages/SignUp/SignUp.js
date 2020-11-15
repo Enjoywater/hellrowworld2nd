@@ -19,7 +19,7 @@ import "./SignUp.scss";
 
 // 전체에 사용하는 변수는 class 밖에서 선언하면 global하게 사용 가능
 const regExp = /[~!@#$%^&*()_+|<>?:{}]/;
-const checkEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+const checkEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 const english = /^[a-zA-Z]*$/;
 const checkNum = /[0-9]/;
@@ -57,7 +57,7 @@ class SignUp extends React.Component {
     modalLayer: false,
   };
 
-  clickSignUp = e => {
+  clickSignUp = (e) => {
     e.preventDefault();
     const {
       memberId,
@@ -87,8 +87,8 @@ class SignUp extends React.Component {
         email: memberEmail,
       }),
     })
-      .then(response => response.json())
-      .then(result => {
+      .then((response) => response.json())
+      .then((result) => {
         if (result.message === "SUCCESS") {
           localStorage.setItem("token", result.Authorization);
           this.setState({
@@ -103,7 +103,7 @@ class SignUp extends React.Component {
       });
   };
 
-  handleInput = e => {
+  handleInput = (e) => {
     const { value, name } = e.target;
     this.setState(
       {
@@ -169,7 +169,7 @@ class SignUp extends React.Component {
     }
   };
 
-  handleClick = nam => {
+  handleClick = (nam) => {
     const { pwGuide } = this.state;
     if (nam === "memberPw") {
       this.setState({
@@ -185,7 +185,7 @@ class SignUp extends React.Component {
     this.setState({ agreeAll: isValid });
   };
 
-  checkAgree = key => {
+  checkAgree = (key) => {
     this.setState(
       {
         [key]: !this.state[key],
@@ -205,7 +205,7 @@ class SignUp extends React.Component {
     });
   };
 
-  numberSelect = e => {
+  numberSelect = (e) => {
     const { value, className } = e.target;
     const isPhone = className === "phoneDropDown";
 

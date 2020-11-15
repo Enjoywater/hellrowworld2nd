@@ -19,7 +19,7 @@ class Product extends React.Component {
 
   componentDidMount() {
     const { value } = this.state;
-    const { id } = this.props.match.params;
+    // const { id } = this.props.match.params;
 
     // this.setState({
     //   title: id,
