@@ -63,7 +63,7 @@ class Nav extends React.Component {
           </div>
           <div className="navContent">
             <div className="navHome">
-              <a href="http://localhost:3000">
+              <a href="/">
                 <img
                   src="https://www.rawrow.com/web/upload/mundane/logo.png"
                   alt="logo"
