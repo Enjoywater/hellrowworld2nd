@@ -12,7 +12,7 @@ class ProductNavList extends React.Component {
         index={index}
         onClick={() => nameChange(content)}
       >
-        <span className={isOrange && "colorOrange"}>{content}</span>
+        <span className={isOrange ? "colorOrange" : ""}>{content}</span>
       </li>
     );
   }

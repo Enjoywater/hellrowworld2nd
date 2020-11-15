@@ -15,7 +15,6 @@ class Cart extends React.Component {
         Authorization: localStorage.getItem("token"),
       },
     })
-      // fetch("/data/cartListData.json")
       .then((res) => res.json())
       .then((res) => {
         this.setState({ cartList: res.data });

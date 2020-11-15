@@ -23,6 +23,7 @@ class Detail extends React.Component {
 
   componentDidMount() {
     const { id } = this.props.match.params;
+    console.log(`${api}/products/${id}`);
     fetch(`${api}/products/${id}`)
       .then((res) => res.json())
       .then((result) => {

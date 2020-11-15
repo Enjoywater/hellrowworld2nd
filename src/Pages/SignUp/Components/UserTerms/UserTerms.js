@@ -25,7 +25,7 @@ class UserTerms extends Component {
               onChange={agreeAllToggle}
               name="agreeAll"
               type="checkbox"
-              checked={agreeAll ? "true" : ""}
+              checked={agreeAll ? "true" : "false"}
             />
           </span>
         </div>
@@ -47,7 +47,7 @@ class UserTerms extends Component {
                 onChange={() => checkAgree("useAgree")}
                 name="useAgree"
                 type="checkbox"
-                checked={useAgree ? "true" : ""}
+                checked={useAgree ? "true" : "false"}
               />
             </span>
           </div>
@@ -68,7 +68,7 @@ class UserTerms extends Component {
                 onChange={() => checkAgree("collectAgree")}
                 name="collectAgree"
                 type="checkbox"
-                checked={collectAgree ? "true" : ""}
+                checked={collectAgree ? "true" : "false"}
               />
             </span>
           </div>
@@ -88,7 +88,7 @@ class UserTerms extends Component {
                 name="smsAgree"
                 type="checkbox"
                 onChange={() => checkAgree("smsAgree")}
-                checked={smsAgree ? "true" : ""}
+                checked={smsAgree ? "true" : "false"}
               />
               <label htmlFor="agreeSms">동의함</label>
             </span>
@@ -100,7 +100,7 @@ class UserTerms extends Component {
                 name="mailAgree"
                 type="checkbox"
                 onChange={() => checkAgree("mailAgree")}
-                checked={mailAgree ? "true" : ""}
+                checked={mailAgree ? "true" : "false"}
               />
               <label htmlFor="agreeEmail">동의함</label>
             </span>

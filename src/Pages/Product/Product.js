@@ -14,6 +14,7 @@ class Product extends React.Component {
       category: "ALL",
       subCategoryId: "ALL",
       value: "0",
+      page: 1,
     };
   }
 
@@ -31,7 +32,9 @@ class Product extends React.Component {
     //     ? `${api}/products/list?sort_method=${value}`
     //     : `${api}/products/category/list?category=${CATEGORY_OBJ[id]}`;
 
-    fetch(`${api}/products/list?sort_method=${value}`)
+    fetch(
+      `${api}/products/list?sort_method=${value}&limit=${LIMIT}&offset=${OFFSET}`
+    )
       // fetch("http://localhost:3000/data/productItemListData.json")
       .then((res) => res.json())
       .then((res) => this.setState({ itemList: res.data }));
@@ -47,25 +50,25 @@ class Product extends React.Component {
       subCategoryId === "ACCESSORY" ||
       subCategoryId === "CLEARANCE";
     const isApi = isAll
-      ? `${api}/products/list?sort_method=${value}`
+      ? `${api}/products/list?sort_method=${value}&limit=${LIMIT}&offset=${OFFSET}`
       : isNotSubCategory
-      ? `${api}/products/category/list?category=${CATEGORY_OBJ[category]}&sort_method=${value}`
-      : `${api}/products/category/list?category=${CATEGORY_OBJ[category]}&subcategory=${SUB_CATEGORY_OBJ[subCategoryId]}&sort_method=${value}`;
+      ? `${api}/products/category/list?category=${CATEGORY_OBJ[category]}&sort_method=${value}&limit=${LIMIT}&offset=${OFFSET}`
+      : `${api}/products/category/list?category=${CATEGORY_OBJ[category]}&subcategory=${SUB_CATEGORY_OBJ[subCategoryId]}&sort_method=${value}&limit=${LIMIT}&offset=${OFFSET}`;
 
     if (preState.category !== category) {
       fetch(isApi)
         .then((res) => res.json())
-        .then((res) => this.setState({ itemList: res.data }));
+        .then((res) => this.setState({ itemList: res.data, page: 1 }));
     } else if (preState.value !== value) {
-      const test = isAll
-        ? `${api}/products/list?sort_method=${value}`
+      const filter = isAll
+        ? `${api}/products/list?sort_method=${value}&limit=${LIMIT}&offset=${OFFSET}`
         : isNotSubCategory
-        ? `${api}/products/category/list?category=${CATEGORY_OBJ[category]}&sort_method=${value}`
-        : `${api}/products/category/list?category=${CATEGORY_OBJ[category]}&subcategory=${SUB_CATEGORY_OBJ[subCategoryId]}&sort_method=${value}`;
+        ? `${api}/products/category/list?category=${CATEGORY_OBJ[category]}&sort_method=${value}&limit=${LIMIT}&offset=${OFFSET}`
+        : `${api}/products/category/list?category=${CATEGORY_OBJ[category]}&subcategory=${SUB_CATEGORY_OBJ[subCategoryId]}&sort_method=${value}&limit=${LIMIT}&offset=${OFFSET}`;
 
-      fetch(test)
+      fetch(filter)
         .then((res) => res.json())
-        .then((res) => this.setState({ itemList: res.data }));
+        .then((res) => this.setState({ itemList: res.data, page: 1 }));
     }
   }
 
@@ -92,6 +95,50 @@ class Product extends React.Component {
 
   valueCheck = (e) => {
     this.setState({ value: e.target.value });
+  };
+
+  // pageBtn = () => {
+  // let pageArr = [];
+  // // let total_page = this.state.itemList[0].total_page;
+
+  // for (let i = 1; i <= 25; i++) {
+  //   if (i <= 25) {
+  //     pageArr.push(i);
+  //   }
+  // }
+  // return pageArr.map((page) => (
+  // <button onClick={() => this.handlePage(page)}>{page}</button>
+  // this.setState(
+  //   {
+  //     page: this.state.page + 1,
+  //   },
+  //   this.handlePage()
+  // );
+  // ));
+  // };
+
+  handlePage = () => {
+    this.setState({
+      page: this.state.page + 1,
+    });
+    let limit = this.state.page * 20;
+    const { category, subCategoryId, value } = this.state;
+    const isAll = category === "ALL";
+    const isNotSubCategory =
+      subCategoryId === "R BAG" ||
+      subCategoryId === "R EYE" ||
+      subCategoryId === "R TRUNK" ||
+      subCategoryId === "ACCESSORY" ||
+      subCategoryId === "CLEARANCE";
+    const isApi = isAll
+      ? `${api}/products/list?sort_method=${value}&limit=${limit}&offset=${OFFSET}`
+      : isNotSubCategory
+      ? `${api}/products/category/list?category=${CATEGORY_OBJ[category]}&sort_method=${value}&limit=${limit}&offset=${OFFSET}`
+      : `${api}/products/category/list?category=${CATEGORY_OBJ[category]}&subcategory=${SUB_CATEGORY_OBJ[subCategoryId]}&sort_method=${value}&limit=${limit}&offset=${OFFSET}`;
+    console.log(this.state.page);
+    fetch(isApi)
+      .then((res) => res.json())
+      .then((res) => this.setState({ itemList: res.data }));
   };
 
   render() {
@@ -149,6 +196,8 @@ class Product extends React.Component {
             />
           ))}
         </ul>
+        <button onClick={this.handlePage}>더보기</button>
+        {/* <button onClick={this.handlePage}>더보기</button> */}
       </div>
     );
   }
@@ -231,3 +280,6 @@ const SUB_CATEGORY_OBJ = {
   SALE: 25,
   "NEW ARRIVAL": 26,
 };
+
+const OFFSET = 0;
+const LIMIT = 20;
