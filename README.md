@@ -7,6 +7,7 @@ rawrow(https://www.rawrow.com) 클론 코딩 프로젝트입니다.
   * Back-end  : 이수현, 문성호
 * [프론트 주소](https://github.com/wecode-bootcamp-korea/12-HellRowWorld-frontend)
 * [백엔드 주소](https://github.com/wecode-bootcamp-korea/12-HellRowWorld-backend)
+* [Project Video](https://youtu.be/ouj-QOn5r8w)
 
 # Stack
 * javascript
